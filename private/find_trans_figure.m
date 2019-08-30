@@ -106,7 +106,7 @@ function [fig,cax1,cax2,ftype] = find_trans_figure(guifig,ftype,get_h_only)
   del_fn_t = ['if ishandle(',num2str(guifig),'),'];
   del_fn = ['set(findobj(',num2str(guifig),',''Tag'',''TransientLB''),''Enable'',''off''); '];
   del_fn2 = ['set(findobj(',num2str(guifig),',''Tag'',''TransientBestLB''),''Enable'',''off''); '];
-  del_fn = [del_fn_t del_fn del_fn2 ' end; delete(',num2str(fig),')'];
+  del_fn = [del_fn_t del_fn del_fn2 ' end; delete(',num2str(fig.Number),')'];
   set(fig,'CloseRequestFcn',del_fn);
 
 % Add the axes
@@ -157,7 +157,7 @@ function [fig,cax1,cax2,ftype] = find_trans_figure(guifig,ftype,get_h_only)
 % Add the stop button
   if get_h_only==0,
     cb_str = ['global stop_trans; stop_trans=1; delete(', ...
-              'findobj(',num2str(fig),',''Tag'',''Stop!''))'];
+              'findobj(',num2str(fig.Number),',''Tag'',''Stop!''))'];
     uicontrol('Style','pushbutton', ...
             'callback',cb_str, ...       
             'String','Stop','pos',[220 25 120 30],'Tag','Stop!', ...
